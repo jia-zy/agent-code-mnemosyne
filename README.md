@@ -1,2 +1,16 @@
-# agent-code-mnemosyne
-Vector‑free lightweight RAG skill for Agent. Code &amp; bug retrospective with checkpoint rollback. No chroma, git‑friendly project‑local memory.
+# Code工程智忆（Skill）
+> 面向代码开发排障的轻量检索增强（轻量RAG）Skill，专为 Trae Agent 设计。
+**无需向量库、无需Chroma、无常驻后台进程，核心业务资产可跟随Git仓库跨电脑/服务器迁移。**
+
+## ✨ 核心特性
+- 🧠 **无向量库轻量RAG检索增强**：依靠大模型完成关键词同义扩展 + 候选结果LLM重排，不依赖Embedding接口与向量数据库，提升历史记录召回准确率
+- 改动前自动检索历史Bug、代码变更记录，复用过往排障与修改方案，减少重复踩坑
+- **改造契约 + 检查点快照机制**：修改代码前自动生成回退快照，小步迭代、支持回退，避免暴力试错
+- 自动入库：Bug修复、代码变更完成后自动写入SQLite复盘库和会话归档，无需手动复制记录
+- 项目隔离：全部数据存放于项目内 `.review/` 目录；区分「可Git共享业务资产」和「本机临时运行产物」，适配多开发机切换场景
+
+## 📦 安装使用
+1. 下载 `review-assistant.md` 导入该Skill
+2. 打开你的业务代码项目，Agent会自动在项目根目录生成 `.review/` 工作目录
+3. 执行代码修改、问题排障，会自动触发历史检索、创建检查点快照、复盘记录入库、会话归档等
+
